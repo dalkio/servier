@@ -5,13 +5,21 @@ requires = ["pip>=20.0.0", "poetry-core>=1.0.0"]
 [tool.poetry]
 authors = ["Côme Arvis <come.arvis@neuronest.net>"]
 description = "Simple molecule classification project"
-name = "servier-technical-test"
+name = "servier"
 readme = "README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4.0"
+flask = "^3.0.3"
+loguru = "^0.7.2"
+numpy = "^1.26.4"
+omegaconf = "2.3.0"
+pandas = "^2.2.2"
+pydantic = "^2.7.1"
+python = ">=3.9,<4.0"
 rdkit = "^2023.9.6"
+scikit-learn = "1.4.2"
+torch = "2.2.2"
 
 [tool.poetry.group.dev]
 optional = true
@@ -20,4 +28,5 @@ optional = true
 black = "24.4.2"
 flake8 = "7.0.0"
 isort = "5.13.2"
+poetry2setup = "^1.1.0"
 toml-sort = "0.23.1"
