@@ -1,5 +1,5 @@
 paths:
-  model: models/model.pt
+  model: models/model_{model_name}.pt
 
 feature_extraction:
   radius: 2
@@ -11,10 +11,19 @@ data_preprocessing:
   test_proportion: 0.1
 
 training:
-  first_hidden_size: 512
-  second_hidden_size: 256
-  dropout: 0.3
-  learning_rate: 1e-5
-  weight_decay: 1e-5
-  max_epochs: 1000
-  patience: 10
+  simple_nn:
+    first_hidden_size: 512
+    second_hidden_size: 256
+    dropout: 0.3
+    batch_size: 64
+    learning_rate: 1e-5
+    weight_decay: 1e-5
+    max_epochs: 1000
+    patience: 10
+  chem_berta:
+    trainable_layers: 4
+    batch_size: 16
+    learning_rate: 1e-5
+    weight_decay: 1e-5
+    max_epochs: 1
+    patience: 10

@@ -7,14 +7,16 @@ from pydantic import ValidationError
 
 from servier.config import config
 from servier.model.predict import prepare_features_and_predict
-from servier.schemas import PredictRequest, PredictResponse
+from servier.schemas import ModelName, PredictRequest, PredictResponse
 
 app = Flask(__name__)
 
 
 @lru_cache
-def load_model() -> torch.nn:
-    return torch.load(config.paths.model)
+def load_model(model_name: ModelName, device: torch.device) -> torch.nn:
+    model_path = config.paths.model.format(model_name=model_name)
+
+    return torch.load(model_path, map_location=device)
 
 
 @app.route("/predict", methods=["POST"])
@@ -26,9 +28,16 @@ def predict() -> Tuple[Response, int]:
     except ValidationError as exception:
         return jsonify(exception.errors()), 400
 
-    model = load_model()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    model = load_model(model_name=predict_request.model_name, device=device)
     predictions, predicted_classes = prepare_features_and_predict(
-        model=model, config=config, sample=predict_request.input
+        model_name=predict_request.model_name,
+        model=model,
+        device=device,
+        config=config,
+        sample=predict_request.input,
+        apply_fingerprint=predict_request.model_name == ModelName.SIMPLE_NN,
     )
 
     prediction = predictions.item()
