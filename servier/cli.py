@@ -4,7 +4,7 @@ from servier.config import config
 from servier.model.evaluate import evaluate
 from servier.model.predict import predict
 from servier.model.train import train
-from servier.schemas import EvaluateArgs, PredictArgs, TrainArgs
+from servier.schemas import EvaluateArgs, ModelName, PredictArgs, TrainArgs
 
 
 def train_cli(args):
@@ -32,6 +32,14 @@ def cli():
         dest="data_path",
         help="Path to training data",
     )
+    train_parser.add_argument(
+        "--model-name",
+        type=str,
+        required=True,
+        dest="model_name",
+        choices=list(ModelName),
+        help="Type of model to use",
+    )
 
     train_parser.set_defaults(func=train_cli)
 
@@ -43,10 +51,26 @@ def cli():
         dest="data_path",
         help="Path to training data",
     )
+    evaluate_parser.add_argument(
+        "--model-name",
+        type=str,
+        required=True,
+        dest="model_name",
+        choices=list(ModelName),
+        help="Type of model to use",
+    )
     evaluate_parser.set_defaults(func=evaluate_cli)
 
     predict_parser = subparsers.add_parser(
         "predict", help="Make predictions with the model"
+    )
+    predict_parser.add_argument(
+        "--model-name",
+        type=str,
+        required=True,
+        dest="model_name",
+        choices=list(ModelName),
+        help="Type of model to use",
     )
     predict_parser.add_argument(
         "--input", type=str, required=True, help="Input data for prediction"
