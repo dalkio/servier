@@ -51,15 +51,14 @@
 
 ## Package installation
 
-Use `poetry2setup` to automatically generate a `setup.py` installer from the `pyproject.toml`:
-- `poetry2setup > setup.py`
+Synchronize the dependencies versions from `pyproject.toml` to `setup.py` if the former has changed.
 
 Afterward, you can install the package `servier` as follows:
 - `python setup.py install`
 
 ## Configuration
 
-The [config.yaml](/conf/config.yaml) file contains several preprocessing and training hyperparameters and can be updated accordingly.
+The [config.yaml](/servier/config.yaml) file contains several preprocessing and training hyperparameters and can be updated accordingly.
 
 ## Models description
 

@@ -27,7 +27,6 @@ RUN pip install --upgrade pip --no-cache-dir \
 
 RUN mkdir $PACKAGE_NAME
 
-COPY conf conf
 COPY models models
 COPY $PACKAGE_NAME $PACKAGE_NAME
 
