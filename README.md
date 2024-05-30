@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Python `>=3.9` already setup
+- Python `>=3.9` already set up
 - Docker already installed and running
 
 ## Project architecture overview
@@ -54,12 +54,12 @@
 Use `poetry2setup` to automatically generate a `setup.py` installer from the `pyproject.toml`:
 - `poetry2setup > setup.py`
 
-Afterwards, you can install the package `servier` as follows:
+Afterward, you can install the package `servier` as follows:
 - `python setup.py install`
 
 ## Configuration
 
-The [config.yaml](/conf/config.yaml) contains several preprocessing and training hyperparameters, and can be updated accordingly.
+The [config.yaml](/conf/config.yaml) file contains several preprocessing and training hyperparameters and can be updated accordingly.
 
 ## Models description
 
@@ -157,9 +157,9 @@ or
 
 - The dataset is quite unbalanced (~82% of 1s and ~18% of 0s). For this reason, a weighted random sampler (from `torch.utils.data.WeightedRandomSampler`) has been used to counterbalance the label apparition during training. <br>
 In addition, the f1-score should be preferred, especially the macro avg f1-score.
-- Early stopping has been used for some fixed patience as soon as the validation loss no longer goes down.
+- Early stopping has been used with some fixed patience as soon as the validation loss no longer decreases.
 - The scores seem to be quite low: not much time was allocated to optimizing model architectures as well as hyperparameters. <br>
-It is possible that the number of samples (5000) is insufficient for the model to be able to generalize enough. <br>
-It would have been interesting to implement simpler models like logistic regression or KNN and thus constitute a baseline on which to iterate.
+It is possible that the number of samples (5000) is insufficient for the model to generalize well. <br>
+It would have been interesting to implement simpler models like logistic regression or KNN and thus establish a baseline to iterate upon.
 - A factory pattern refactoring should be helpful, especially if other models are added.
-- Finally, some components are missing, like unit tests, CI/CD, and proper model serving, but it was outside the exercise.
+- Finally, some components are missing, like unit tests, CI/CD, and proper model serving, but it was outside the exercise's scope.
