@@ -94,11 +94,11 @@ For instance, for a molecule having the SMILES `Cc1cccc(N2CCN(C(=O)C34CC5CC(CC(C
 
 ### Gunicorn server
 
-- `gunicorn --workers 4 --timeout 300 --bind 0.0.0.0:5000 servier.api.app:app`
+- `gunicorn --workers 4 --timeout 300 --bind 0.0.0.0:8000 servier.api.app:app`
 
 ### Request example using curl for chem_berta model
 
-- `curl -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d '{"input": "Cc1cccc(N2CCN(C(=O)C34CC5CC(CC(C5)C3)C4)CC2)c1C", "model_name": "chem_berta"}'`
+- `curl -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" -d '{"input": "Cc1cccc(N2CCN(C(=O)C34CC5CC(CC(C5)C3)C4)CC2)c1C", "model_name": "chem_berta"}'`
 
 
 ## Run locally using Docker
