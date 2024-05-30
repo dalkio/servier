@@ -114,3 +114,41 @@ For instance, for a molecule having the SMILES `Cc1cccc(N2CCN(C(=O)C34CC5CC(CC(C
 Use the docker image hosted here: https://hub.docker.com/r/neuronest/servier and run it:
 
 - `docker run -p 8000:8000 neuronest/servier`
+
+## Evaluation performances
+
+### Model: simple_nn
+
+Reproducible results with:
+- `python -m servier.cli evaluate --data-path data/dataset_single.csv --model-name simple_nn` <br>
+or
+- `servier evaluate --data-path data/dataset_single.csv --model-name simple_nn` <br>
+or
+- `docker run -v $(pwd)/data:/app/data neuronest/servier python -m servier.main evaluate --data-path data/dataset_single.csv --model-name simple_nn`
+
+|           | precision | recall | f1-score | support       |
+|-----------|-----------|--------|----------|---------------| 
+| 0         | 0.26      | 0.41   | 0.31     | 81            |
+| 1         | 0.87      | 0.77   | 0.82     | 419           |
+| accuracy  |           |        | 0.71     | 500           | 
+| macro avg | 0.56      | 0.59   | 0.57     | 500           | 
+| accuracy  | 0.77      | 0.71   | 0.74     | 500           |
+
+### Model: chem_berta
+
+Can take a while if running on CPU.
+
+Reproducible results with:
+- `python -m servier.cli evaluate --data-path data/dataset_single.csv --model-name chem_berta` <br>
+or
+- `servier evaluate --data-path data/dataset_single.csv --model-name chem_berta` <br>
+or
+- `docker run -v $(pwd)/data:/app/data neuronest/servier python -m servier.main evaluate --data-path data/dataset_single.csv --model-name chem_berta`
+
+|           | precision | recall | f1-score | support       |
+|-----------|-----------|--------|----------|---------------| 
+| 0         | 0.24      | 0.51   | 0.33     | 81            |
+| 1         | 0.88      | 0.69   | 0.77     | 419           |
+| accuracy  |           |        | 0.66     | 500           | 
+| macro avg | 0.56      | 0.60   | 0.55     | 500           | 
+| accuracy  | 0.77      | 0.66   | 0.70     | 500           |
