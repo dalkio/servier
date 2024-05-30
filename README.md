@@ -10,10 +10,9 @@
 ```
 │── Dockerfile
 │── LICENSE
+│── MANIFEST.in
 │── README.md
 │── build
-│── conf
-│   └── config.yaml
 │── data
 │   └── dataset_multi.csv
 │   └── dataset_single.csv
@@ -28,6 +27,7 @@
 │       └── app.py
 │   └── cli.py
 │   └── config.py
+│   └── config.yaml
 │   └── constants.py
 │   └── main.py
 │   └── model
